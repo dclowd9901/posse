@@ -1,4 +1,6 @@
-# Gallery Page
+# Page Types
+
+## Gallery Page
 
 Steps to constructing a gallery page:
 
@@ -41,3 +43,7 @@ Steps to constructing a gallery page:
     Doing so will add a couple more elements to your image when it's rendered to the page for the title and description.
 
 1. As with any other page, you can add a `css` folder within this page's folder and create a `page.css` file within it to be used to format and style your gallery page.
+
+## Untreated Page
+
+There is an "escape hatch" of sorts built into this generator. If you don't denote a page as a supported page type, Posse will still generate it. It's essentially a way to create a fully custom page. The generator will still suppor `{header}` and `{footer}` tokens on the page (if you want them), but it will do no further treatment.

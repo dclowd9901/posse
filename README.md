@@ -49,6 +49,8 @@ We denote a page's type by putting an HTML comment at the top of the `index.html
 
 This tells the build script what kind of page this is, and what tokens to look for, which we'll get into right now.
 
+You can find further documentation around page types [here](./src/pageTypes/README.md).
+
 ## Templatizing and fragments
 
 To help the build engine put the page together, we tell it where to place certain aspects of the page.
