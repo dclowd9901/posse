@@ -1,0 +1,24 @@
+{
+  "name": "posse",
+  "version": "0.0.1",
+  "description": "Pretty simple static site generation",
+  "main": "src/index.ts",
+  "author": "David Drew",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "glob": "^10.3.3",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "dev": "nodemon ./src/scripts/build.ts",
+    "build": "ts-node ./src/scripts/build.ts",
+    "upload": "S3=$(cat .s3) && aws s3 cp ./build/site $S3 --recursive",
+    "purge-cdn": "CLOUDFRONT=$(cat .cloudfront) && aws cloudfront create-invalidation --distribution-id \"$CLOUDFRONT\" --paths \"/*\"",
+    "deploy": "PRODUCTION=true yarn build && yarn upload && yarn purge-cdn"
+  }
+}

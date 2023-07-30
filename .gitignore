@@ -1,0 +1,14 @@
+# Mac OS
+.DS_Store
+
+# Node
+node_modules
+package-lock.json
+
+# Posse
+build
+.s3
+.cloudfront
+
+# Yarn
+yarn-error.log
