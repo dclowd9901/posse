@@ -2,11 +2,12 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { glob } from 'glob';
 import writeFileWithDirectory from './writeFileWithDirectory';
+import { supportedBrowserFiles, supportedFontTypes, supportedImageTypes } from '../constants/supportedFileTypes';
 
 const copyStaticAssets = async (folderPath: string, buildFolder: string) => {
   console.log(`Copying files from "${folderPath}" to build folder "${buildFolder}"...`);
 
-  const files = await glob(`${folderPath}/**/*.{css,jpg,ttf,svg}`);
+  const files = await glob(`${folderPath}/**/*.{${[...supportedImageTypes, ...supportedFontTypes, ...supportedBrowserFiles]}}`);
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];

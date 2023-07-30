@@ -1,22 +1,30 @@
-# Posse
-## Pretty simple static site generation
+# Posse - Pretty simple static site generation
 
-Posse was built to make it easy to build and distribute a statically generated website that has HTTPS and a robust CDN.
+Posse was built to make it easy to build and distribute a statically generated website that has HTTPS and a robust CDN. Development is easy, deployments are fast, and your website will be able to stand up to huge amounts of burst traffic.
 
 It is built around these ideas:
 - Directory structure matches website structure
-- "types" of pages
-- Templatizing and Fragments
+- "Types" of pages
+- Templatizing with tokens and fragments
 - Design is completely through CSS
+- No Javascript out of the box
 - HTML is semantic but should not be restrictive to designing pages
-- Developing your page
-- Built in scripts to push to S3 and Cloudfront
+- Development is extremely simplistic
+- Built in scripts to push to S3 and purge CloudFront distributions
 
-## How to start
+## Getting started
+
+Prereqs:
+- [Node](https://nodejs.org/en/download) (18+)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) (2+)
 
 Run this in your development directory, replacing `mycoolwebsite.com` with the name of your website.
 
-`git clone git@github.com:dclowd9901/posse.git mycoolwebsite.com`
+```
+git clone git@github.com:dclowd9901/posse.git mycoolwebsite.com
+cd mycoolwebsite.com
+yarn
+```
 
 ## Directory structure
 
@@ -31,9 +39,9 @@ If a user visits `yourwebsite.com`, they are viewing your built site's root `ind
 Currently, the scripting supports two different types of pages (there will be more to come):
 
 - An image gallery page type called `galleryPage`
-- An untreated page type, which has no need for description
+- An untreated page type, which is basically a custom page of your making
 
-We denote a page's type by putting, at the top of the `index.html` file with a pragma mark:
+We denote a page's type by putting an HTML comment at the top of the `index.html` file with a pragma mark:
 
 ```
 <!-- pageType: galleryPage -->
@@ -53,6 +61,7 @@ For all pages, there are two tokens:
 
 Every page is capable of receiving a header and footer, but not required to. If you want the page to have a header and footer, use the above tokens.
 
+When putting together your site, you should be spending most of your time in the `site` folder and the `fragments` folder, but you shouldn't need to touch anything within the `src` folder.
 
 ### Page-specific tokens 
 
@@ -81,6 +90,10 @@ The development loop for your site looks like this:
 1. Make changes (they will auto generate a new build).
 1. Refresh page to see changes.
 
+No need to start a server or build output using a builder packager like Webpack. Asset files are copied, HTML files are assembled and copied, and the directory structure _is_ the website. When viewing pages in "dev" mode, the assets are pointed to via a path that utilizes your system path. In "production", it's all just relative to `/` (for global assets) or the relative location for individual pages.
+
+> Note: For security reasons, most browsers do not allow clicking a link that takes you to a local file in your file system. Because of this, you won't be able to navigate your site clicking links like you would be able to if you stood up a server. Eventually, I may distribute a version of this package that stands up a simple server for browsing and testing locally, but for now, I'm keeping this very simple.
+
 ### Deploying
 
-Please see the [Deploying doc](./docs/deploy.md).
+Please see the [Deploying doc](./src/docs/deploy.md).

@@ -15,7 +15,7 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "dev": "nodemon ./src/scripts/build.ts",
+    "dev": "nodemon ./src/scripts/build.ts -e ts,css,html,png,jpg,jpeg,txt,frag,json --ignore build/",
     "build": "ts-node ./src/scripts/build.ts",
     "upload": "S3=$(cat .s3) && aws s3 cp ./build/site $S3 --recursive",
     "purge-cdn": "CLOUDFRONT=$(cat .cloudfront) && aws cloudfront create-invalidation --distribution-id \"$CLOUDFRONT\" --paths \"/*\"",

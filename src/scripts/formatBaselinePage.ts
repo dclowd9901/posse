@@ -2,12 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { HEADER_TOKEN, FOOTER_TOKEN, HOST_PATH } from './constants';
 
+const FRAGMENTS_PATH = path.join(process.cwd(), 'fragments');
+
 const injectHeader = (page: string) => {
-  return page.replace(HEADER_TOKEN, fs.readFileSync('fragments/header.frag', 'utf-8'));
+  return page.replace(HEADER_TOKEN, fs.readFileSync(path.join(FRAGMENTS_PATH, 'header.frag'), 'utf-8'));
 }
 
 const injectFooter = (page: string) => {
-  return page.replace(FOOTER_TOKEN, fs.readFileSync('fragments/footer.frag', 'utf-8'));
+  return page.replace(FOOTER_TOKEN, fs.readFileSync(path.join(FRAGMENTS_PATH, 'footer.frag'), 'utf-8'));
 }
 
 const injectHostPath = (page: string) => {
