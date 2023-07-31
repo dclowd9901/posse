@@ -63,6 +63,8 @@ For all pages, there are two tokens:
 
 Every page is capable of receiving a header and footer, but not required to. If you want the page to have a header and footer, use the above tokens.
 
+This package comes with a couple of `.frag` files defined in the `fragments` folder (for the header and footer). The markup is pretty simplistic, so odds are you'll want to go in there and set up the HTML you'd prefer to represent your personal header and footer.
+
 When putting together your site, you should be spending most of your time in the `site` folder and the `fragments` folder, but you shouldn't need to touch anything within the `src` folder.
 
 ### Page-specific tokens 
