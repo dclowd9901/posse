@@ -1,4 +1,4 @@
-# Posse - Pretty simple static site generation
+# Posse - Pretty simple static site generation and deployment
 
 Posse was built to make it easy to build and distribute a statically generated website that has HTTPS and a robust CDN. Development is easy, deployments are fast, and your website will be able to stand up to huge amounts of burst traffic.
 
