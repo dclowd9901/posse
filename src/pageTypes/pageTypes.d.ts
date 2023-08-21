@@ -1,1 +1,1 @@
-export type PageType = 'galleryPage' | 'noTreatment';
+export type PageType = 'galleryPage' | 'articlesList' | 'noTreatment';

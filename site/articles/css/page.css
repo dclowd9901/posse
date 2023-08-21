@@ -1,0 +1,8 @@
+.article-list {
+  list-style: none;
+  text-align: left;
+}
+
+.article-list-item {
+  line-height: 24px;
+}

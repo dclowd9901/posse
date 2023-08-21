@@ -12,8 +12,12 @@ const injectFooter = (page: string) => {
   return page.replace(FOOTER_TOKEN, fs.readFileSync(path.join(FRAGMENTS_PATH, 'footer.frag'), 'utf-8'));
 }
 
+export const getHostPath = () => {
+  return process.env.PRODUCTION ? '' : path.join(process.cwd(), 'build', 'site');
+}
+
 const injectHostPath = (page: string) => {
-  return page.replaceAll(HOST_PATH, process.env.PRODUCTION ? '' : path.join(process.cwd(), 'build', 'site'));
+  return page.replaceAll(HOST_PATH, getHostPath());
 }
 
 const formatBaselinePage = (pageContent: string) => {

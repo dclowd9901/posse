@@ -36,8 +36,9 @@ If a user visits `yourwebsite.com`, they are viewing your built site's root `ind
 
 ## Types of pages
 
-Currently, the scripting supports two different types of pages (there will be more to come):
+Currently, the scripting supports three different types of pages (there will be more to come):
 
+- A blog index page type called `articleList`
 - An image gallery page type called `galleryPage`
 - An untreated page type, which is basically a custom page of your making
 
@@ -101,3 +102,8 @@ No need to start a server or build output using a builder packager like Webpack.
 ### Deploying
 
 Please see the [Deploying doc](./src/docs/deploy.md).
+
+### To do:
+
+- [] Add support for images to blogs.
+- [] Create local server instance for testing.

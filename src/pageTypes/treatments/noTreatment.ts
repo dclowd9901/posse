@@ -7,7 +7,7 @@ import copyStaticAssets from '../../utils/copyStaticAssets';
 export default async function noTreatment(indexContents: string, filePath: string, buildFolder: string): Promise<void> {
   const folderPath = filePathToFolderPath(filePath);
 
-  copyStaticAssets(folderPath, buildFolder);
+  await copyStaticAssets(folderPath, buildFolder);
 
   console.log(`Copying "${filePath}" to build folder "${buildFolder}"`);
 

@@ -6,6 +6,10 @@ function testPageType(value?: string | null): PageType {
     return value;
   }
 
+  if (value === 'articlesList') {
+    return value;
+  }
+
   // Add more pageTypes here
 
   return 'noTreatment';

@@ -7,3 +7,8 @@
 <body>
   <div id="main">
     <h1>My Posse Site</h1>
+    <nav>
+      <a href="{hostPath}/index.html">Home</a> | 
+      <a href="{hostPath}/articles/index.html">Articles</a> | 
+      <a href="{hostPath}/gallery-page/index.html">Gallery Page</a>
+    </nav>

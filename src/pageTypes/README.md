@@ -1,5 +1,53 @@
 # Page Types
 
+## Article List Page
+
+An article list page is very powerful, as it builds out an entire blog for you.
+
+1. You start off by deciding what you want to call the directory in which you house the main `index.html`. Let's say it's `articles` for the sake of this example. 
+
+    ```
+    ...
+    site
+    |- index.html
+    |- articles/
+       |- index.html
+    ...
+    ```
+1. The `index.html` file here will become the "base" portion of your blog, showing all of the titles of all of your articles.
+
+1. In the base `index.html` for your article list, you'll use the token `{articleList}` to place the list on the page. This `index.html` file is also used as the basis for formatting your blog posts, and in individual blog posts, the converted Markdown will replace the `{articleList}` token. 
+
+1. When you wish to create a new blog entry, you do so by creating a new Markdown file with the name `YYYYMMDD_<title>`. The nomenclature of this file is important. The date portion will be broken down into a directory structure to represent your blog posts. So, for instance, if you want to write a post with the date October 26, 1985, you'll format it like this: `19851026_the_craziest_thing_just_happened.md`.
+
+    ```
+    ...
+    site
+    |- index.html
+    |- articles/
+       |- index.html
+       |- 19851026_the_craziest_thing_just_happened.md
+    ...
+    ```
+
+1. Another crucial component in the creation of your blog post is the title of your blog. Because your site should already have the `H1` element occupied by the website title, your blog posts should start with the `H2` element (Markdown `##`). Posse will read this title and make it into the link name that's posted on the blog entries list.
+
+1. If you've done everything correctly, your build folder structure will look like this:
+
+```
+    ...
+    site
+    |- index.html
+    |- articles/
+       |- 1985
+          |- 10
+             |- 26
+                |- index.html
+       |- index.html
+    ...
+```
+
+
 ## Gallery Page
 
 Steps to constructing a gallery page:

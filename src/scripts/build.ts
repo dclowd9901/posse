@@ -3,6 +3,7 @@ import path from 'node:path';
 import { glob } from 'glob';
 
 import gallery from '../pageTypes/treatments/gallery';
+import articlesList from '../pageTypes/treatments/articlesList';
 import noTreatment from '../pageTypes/treatments/noTreatment';
 import formatBaselinePage from './formatBaselinePage';
 import getPageType from '../pageTypes/getPageType';
@@ -35,8 +36,13 @@ async function run(): Promise<void> {
 
     switch(pageType) {
       case 'galleryPage': {
-        console.log(`'pageType' found: 'galleryPage' type`)
+        console.log(`'pageType' found: 'galleryPage' type`);
         await gallery(formattedPage, filePath, BUILD_FOLDER);
+        break;
+      }
+      case 'articlesList': {
+        console.log(`'pageType' found: 'articlesList' type`);
+        await articlesList(formattedPage, filePath, BUILD_FOLDER);
         break;
       }
       case 'noTreatment': {
