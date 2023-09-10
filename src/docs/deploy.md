@@ -8,11 +8,11 @@
 
 ## Why S3 and CloudFront?
 
-Amazon provides built-in static site hosting in S3 buckets that is fairly trivial to set up. It's also free up to a pretty high minimum usage. Unless your site gets pretty slammed, odds are, you won't have to pay for it.
+Amazon provides built-in static site hosting in S3 buckets that is fairly trivial to set up. It's also free up to a pretty high minimum usage. Unless your site gets slammed, odds are you won't have to pay for it.
 
 The one downside to it is that it doesn't support SSL (HTTPS). This is actually a huge problem because, by default, browsers will not serve you non-HTTPS content anymore without you explicitly denoting it in the address, which most people never do.
 
-However, they do offer HTTPS through their CDN which is called Cloudfront. Again, very cheap if not free.
+However, they do offer HTTPS through their CDN which is called Cloudfront. Again, very cheap if not free up to a large minimum usage.
 
 
 ## Setting up S3
@@ -47,7 +47,7 @@ You'll need to obtain a cert to serve HTTPS traffic through Cloudfront. This isn
 
 1. In the CloudFront console, choose "Create Distribution".
 
-1. Choose your domain from your S3 bucket in the dropdown. It will note that you shoul use the website endpoint for the bucket if you have that bucket in static site serving mode.
+1. Choose your domain from your S3 bucket in the dropdown. It will note that you should use the website endpoint for the bucket if you have that bucket in static site serving mode.
 
 1. For "Cache behavior" section, leave defaults, except for:
     - Redirect HTTP to HTTPS
