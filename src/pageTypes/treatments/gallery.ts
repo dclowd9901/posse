@@ -64,7 +64,14 @@ export default async function gallery(
 ): Promise<void> {
   const folderPath = filePathToFolderPath(filePath);
 
-  await copyStaticAssets(folderPath, buildFolder, siteFolder);
+  // Copy css folder
+  await copyStaticAssets(path.join(folderPath, 'css'), buildFolder, siteFolder);
+  // Copy images folder
+  await copyStaticAssets(
+    path.join(folderPath, 'images'),
+    buildFolder,
+    siteFolder
+  );
 
   console.log(`Building "${filePath}"...`);
 

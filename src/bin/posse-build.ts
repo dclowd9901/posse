@@ -10,12 +10,12 @@ import noTreatment from '../pageTypes/treatments/noTreatment';
 import formatBaselinePage from '../scripts/formatBaselinePage';
 import getPageType from '../pageTypes/getPageType';
 import { PROJECT_ROOT } from '../scripts/constants';
+import copyStaticAssets from '../utils/copyStaticAssets';
 
-const BUILD_FOLDER = path.join(PROJECT_ROOT, 'build');
+const BUILD_FOLDER = path.join(PROJECT_ROOT, 'public');
 const SITE_FOLDER = path.join(PROJECT_ROOT, 'site');
 
-const indexMatcher = `**/*/index.html`;
-console.log(indexMatcher);
+const indexMatcher = `**/index.html`;
 async function run(): Promise<void> {
   console.log('Deleting previous build folder...');
   fs.rmSync(BUILD_FOLDER, { recursive: true, force: true });
@@ -29,7 +29,8 @@ async function run(): Promise<void> {
       "Couldn't find any `index.html` files. This usually indicates the `site` folder is not set up at the root of the project."
     );
 
-  console.log(indexHtmlFiles);
+  // Copy shared folder
+  await copyStaticAssets('shared', BUILD_FOLDER, SITE_FOLDER);
 
   for (let i = 0; i < indexHtmlFiles.length; i++) {
     const indexFilePath = indexHtmlFiles[i];

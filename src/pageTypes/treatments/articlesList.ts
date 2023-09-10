@@ -57,7 +57,8 @@ const process = async (
 ) => {
   const folderPath = filePathToFolderPath(filePath);
 
-  await copyStaticAssets(folderPath, buildFolder, siteFolder);
+  // Copy CSS folder
+  await copyStaticAssets(path.join(folderPath, 'css'), buildFolder, siteFolder);
 
   console.log('--------folderPath---------', folderPath);
   const articlePaths = await getArticlePaths(folderPath, siteFolder);

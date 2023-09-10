@@ -18,7 +18,7 @@ const copyStaticAssets = async (
   );
 
   const files = await glob(
-    `${folderPath}/**/*.{${[
+    `${folderPath}/*.{${[
       ...supportedImageTypes,
       ...supportedFontTypes,
       ...supportedBrowserFiles,

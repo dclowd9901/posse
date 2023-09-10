@@ -10,9 +10,16 @@ export default async function noTreatment(
   buildFolder: string,
   siteFolder: string
 ): Promise<void> {
-  const folderPath = filePathToFolderPath(path.join(siteFolder, filePath));
+  const folderPath = filePathToFolderPath(filePath);
 
-  await copyStaticAssets(folderPath, buildFolder, siteFolder);
+  // Copy CSS folder
+  await copyStaticAssets(path.join(folderPath, 'css'), buildFolder, siteFolder);
+  // Copy images folder
+  await copyStaticAssets(
+    path.join(folderPath, 'images'),
+    buildFolder,
+    siteFolder
+  );
 
   console.log(`Copying "${filePath}" to build folder "${buildFolder}"`);
 
