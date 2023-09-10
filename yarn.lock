@@ -271,6 +271,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nodemon@npm:^1.19.2":
+  version: 1.19.2
+  resolution: "@types/nodemon@npm:1.19.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 2f9301089b0643ad3d9ee20b8a79984c53ed425c6afac3022d1546e73374baf87ae3736329bf3f038cf39d921862754b4166574815a00a17525901c9180a6884
+  languageName: node
+  linkType: hard
+
 "@types/resolve@npm:1.20.2":
   version: 1.20.2
   resolution: "@types/resolve@npm:1.20.2"
@@ -2767,6 +2776,7 @@ __metadata:
     "@types/fs-extra": 11.0.1
     "@types/http-server": 0.12.1
     "@types/node": 20.4.2
+    "@types/nodemon": ^1.19.2
     "@types/showdown": 2.0.1
     "@typescript-eslint/eslint-plugin": 6.4.0
     "@typescript-eslint/parser": 6.6.0
@@ -2791,7 +2801,7 @@ __metadata:
   bin:
     posse-build: lib/bin/posse-build.cjs
     posse-deploy: lib/bin/posse-deploy.sh
-    posse-dev: lib/bin/posse-dev.sh
+    posse-dev: lib/bin/posse-dev.cjs
     posse-init: lib/bin/posse-init.cjs
   languageName: unknown
   linkType: soft

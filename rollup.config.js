@@ -6,6 +6,7 @@ export default {
   input: {
     'posse-init': './src/bin/posse-init.ts',
     'posse-build': './src/bin/posse-build.ts',
+    'posse-dev': './src/bin/posse-dev.ts',
   },
   output: {
     dir: 'lib/bin',

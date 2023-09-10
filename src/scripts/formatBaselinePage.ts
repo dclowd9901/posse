@@ -20,7 +20,7 @@ const injectFooter = (page: string) => {
 };
 
 export const getHostPath = () => {
-  return process.env.PRODUCTION ? '' : path.join(PROJECT_ROOT, 'build', 'site');
+  return process.env.PRODUCTION ? '' : '';
 };
 
 const injectHostPath = (page: string) => {

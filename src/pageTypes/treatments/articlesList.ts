@@ -60,7 +60,6 @@ const process = async (
   // Copy CSS folder
   await copyStaticAssets(path.join(folderPath, 'css'), buildFolder, siteFolder);
 
-  console.log('--------folderPath---------', folderPath);
   const articlePaths = await getArticlePaths(folderPath, siteFolder);
 
   console.log('Building article pages and folders...');
@@ -82,15 +81,11 @@ const buildArticleListPage = (
 ) => {
   const articleListElements = articleLinks.map(
     (articleLink: ArticleLinkDescription) => {
-      const splitPath = articleLink.path.split('/');
-      splitPath.shift(); // Removes empty item
-      splitPath.shift(); // Removes `site`
-      const urlFriendlyPath = '/' + splitPath.join('/');
       const aElement = makeElement(
         'a',
         {
           class: 'article-link',
-          href: path.join(getHostPath(), urlFriendlyPath),
+          href: path.join(getHostPath(), articleLink.path),
         },
         articleLink.title
       );
@@ -125,7 +120,6 @@ const buildArticles = (
 ): ArticleLinkDescription[] => {
   const articleLinks: ArticleLinkDescription[] = [];
 
-  console.log('--------article paths---------', articlePaths);
   articlePaths.forEach((articlePath) => {
     const article = fs.readFileSync(
       path.join(siteFolder, articlePath),

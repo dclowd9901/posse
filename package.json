@@ -23,6 +23,7 @@
     "@rollup/plugin-typescript": "11.1.3",
     "@rollup/plugin-url": "8.0.1",
     "@types/node": "20.4.2",
+    "@types/nodemon": "^1.19.2",
     "@typescript-eslint/eslint-plugin": "6.4.0",
     "@typescript-eslint/parser": "6.6.0",
     "eslint": "8.0.1",
@@ -45,7 +46,7 @@
   "bin": {
     "posse-build": "lib/bin/posse-build.cjs",
     "posse-deploy": "lib/bin/posse-deploy.sh",
-    "posse-dev": "lib/bin/posse-dev.sh",
+    "posse-dev": "lib/bin/posse-dev.cjs",
     "posse-init": "lib/bin/posse-init.cjs"
   }
 }
