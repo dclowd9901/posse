@@ -7,6 +7,7 @@ if (!process.env.INIT_CWD) {
   throw new Error("For some reason, INIT_CWD wasn't set.");
 }
 
+/* Yes, this means you can't use Yarn PnP with this package */
 const posseNodeModulePath = path.join(
   process.env.INIT_CWD,
   'node_modules',

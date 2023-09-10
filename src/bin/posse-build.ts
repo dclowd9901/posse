@@ -11,31 +11,40 @@ import formatBaselinePage from '../scripts/formatBaselinePage';
 import getPageType from '../pageTypes/getPageType';
 import { PROJECT_ROOT } from '../scripts/constants';
 
-const indexMatcher = '**/*/index.html';
-
 const BUILD_FOLDER = path.join(PROJECT_ROOT, 'build');
+const SITE_FOLDER = path.join(PROJECT_ROOT, 'site');
 
+const indexMatcher = `**/*/index.html`;
+console.log(indexMatcher);
 async function run(): Promise<void> {
   console.log('Deleting previous build folder...');
   fs.rmSync(BUILD_FOLDER, { recursive: true, force: true });
   console.log('Successfully purged old build.');
 
   console.log('Getting all "html" files...');
-  const indexHtmlFiles = await glob(indexMatcher, {
-    cwd: path.join(PROJECT_ROOT, 'scaffolding', 'site'),
-  });
+  const indexHtmlFiles = await glob(indexMatcher, { cwd: SITE_FOLDER });
+
+  if (indexHtmlFiles.length === 0)
+    throw new Error(
+      "Couldn't find any `index.html` files. This usually indicates the `site` folder is not set up at the root of the project."
+    );
+
+  console.log(indexHtmlFiles);
 
   for (let i = 0; i < indexHtmlFiles.length; i++) {
-    const filePath = indexHtmlFiles[i];
-    if (!filePath) throw new Error(`File path could not be found.`);
+    const indexFilePath = indexHtmlFiles[i];
+    if (!indexFilePath) throw new Error(`File path could not be found.`);
 
-    console.log(`Starting page build: "${filePath}"`);
+    console.log(`Starting page build: "${indexFilePath}"`);
 
     console.log('Getting page type...');
-    const fileContents = fs.readFileSync(filePath, 'utf-8');
+    const fileContents = fs.readFileSync(
+      path.join(SITE_FOLDER, indexFilePath),
+      'utf-8'
+    );
 
     console.log(
-      `Adding header and footer to "${filePath}" and setting host path...`
+      `Adding header and footer to "${indexFilePath}" and setting host path...`
     );
     const formattedPage = formatBaselinePage(fileContents);
 
@@ -44,17 +53,27 @@ async function run(): Promise<void> {
     switch (pageType) {
       case 'galleryPage': {
         console.log(`'pageType' found: 'galleryPage' type`);
-        await gallery(formattedPage, filePath, BUILD_FOLDER);
+        await gallery(formattedPage, indexFilePath, BUILD_FOLDER, SITE_FOLDER);
         break;
       }
       case 'articlesList': {
         console.log(`'pageType' found: 'articlesList' type`);
-        await articlesList(formattedPage, filePath, BUILD_FOLDER);
+        await articlesList(
+          formattedPage,
+          indexFilePath,
+          BUILD_FOLDER,
+          SITE_FOLDER
+        );
         break;
       }
       case 'noTreatment': {
         console.log(`'pageType' not defined; no treatment applied`);
-        await noTreatment(formattedPage, filePath, BUILD_FOLDER);
+        await noTreatment(
+          formattedPage,
+          indexFilePath,
+          BUILD_FOLDER,
+          SITE_FOLDER
+        );
         break;
       }
     }
