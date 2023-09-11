@@ -7,7 +7,7 @@ if (!process.env.INIT_CWD) {
   throw new Error("For some reason, INIT_CWD wasn't set.");
 }
 
-/* Yes, this means you can't use Yarn PnP with this package */
+// /* Yes, this means you can't use Yarn PnP with this package */
 const posseNodeModulePath = path.join(
   process.env.INIT_CWD,
   'node_modules',
@@ -28,4 +28,27 @@ fse.copySync(
   path.join(posseNodeModulePath, 'scaffolding', 'site'),
   path.join(process.env.INIT_CWD, 'site'),
   { overwrite: true }
+);
+console.log('Adding entry to .gitignore...');
+let gitignoreContent = '';
+
+try {
+  gitignoreContent = fse.readFileSync(
+    path.join(process.env.INIT_CWD, '.gitignore'),
+    { encoding: 'utf-8' }
+  );
+} catch (e) {
+  // file probably doesn't exist
+}
+
+gitignoreContent += `
+#posse
+.s3
+.cloudfront
+public
+`;
+
+fse.writeFileSync(
+  path.join(process.env.INIT_CWD, '.gitignore'),
+  gitignoreContent
 );
