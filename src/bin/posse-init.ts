@@ -11,6 +11,7 @@ if (!process.env.INIT_CWD) {
 const posseNodeModulePath = path.join(
   process.env.INIT_CWD,
   'node_modules',
+  '@dclowd9901',
   'posse'
 );
 
