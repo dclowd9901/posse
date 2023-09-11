@@ -20,10 +20,12 @@ Prereqs:
 
 Run this in your development directory, replacing `mycoolwebsite.com` with the name of your website.
 
+Four steps to "Hello, world!":
 ```
-git clone git@github.com:dclowd9901/posse.git mycoolwebsite.com
-cd mycoolwebsite.com
-yarn
+mkdir mycoolwebsite.com && cd mycoolwebsite.com
+yarn add @dclowd9901/posse --dev
+yarn posse-init
+yarn posse-dev
 ```
 
 ## Directory structure
@@ -66,7 +68,7 @@ Every page is capable of receiving a header and footer, but not required to. If 
 
 This package comes with a couple of `.frag` files defined in the `fragments` folder (for the header and footer). The markup is pretty simplistic, so odds are you'll want to go in there and set up the HTML you'd prefer to represent your personal header and footer.
 
-When putting together your site, you should be spending most of your time in the `site` folder and the `fragments` folder, but you shouldn't need to touch anything within the `src` folder.
+When putting together your site, you should be spending most of your time in the `site` folder and the `fragments` folder.
 
 ### Page-specific tokens 
 
@@ -89,15 +91,9 @@ Insofar as they can, the build scripts generate semantic HTML. The structure is 
 
 The development loop for your site looks like this:
 
-1. Run `yarn dev`.
-1. Go to the `build` folder.
-1. Open `index.html` of page you want to preview in a browser.
-1. Make changes (they will auto generate a new build).
-1. Refresh page to see changes.
-
-No need to start a server or build output using a builder packager like Webpack. Asset files are copied, HTML files are assembled and copied, and the directory structure _is_ the website. When viewing pages in "dev" mode, the assets are pointed to via a path that utilizes your system path. In "production", it's all just relative to `/` (for global assets) or the relative location for individual pages.
-
-> Note: For security reasons, most browsers do not allow clicking a link that takes you to a local file in your file system. Because of this, you won't be able to navigate your site clicking links like you would be able to if you stood up a server. Eventually, I may distribute a version of this package that stands up a simple server for browsing and testing locally, but for now, I'm keeping this very simple.
+1. Run `yarn posse-dev`.
+1. Go to `localhost:8080` in your web browser.
+1. Changes should update the site automatically.
 
 ### Deploying
 
