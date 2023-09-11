@@ -1,6 +1,6 @@
 {
   "name": "@dclowd9901/posse",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Pretty simple static site generation",
   "packageManager": "yarn@3.6.3",
   "main": "",
