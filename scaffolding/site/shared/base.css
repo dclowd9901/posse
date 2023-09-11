@@ -1,0 +1,30 @@
+* {
+	font-family: 'Arial';
+	color: #414141;
+}
+
+body {
+	background-color: #E5E5E5;
+}
+
+#main {
+	width: 800px;
+	margin: 100px auto;
+	text-align: center;
+}
+
+h1 {
+	font-size: 42px;
+}
+
+nav {
+	margin-bottom: 40px;
+}
+
+#footer {
+  margin: 100px 0;
+}
+
+.article {
+  text-align: left;
+}
