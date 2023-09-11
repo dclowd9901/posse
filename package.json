@@ -41,7 +41,7 @@
     "ts-node": "10.9.1"
   },
   "scripts": {
-    "build": "yarn rollup --config rollup.config.js"
+    "build": "yarn rollup --config rollup.config.js && cp -f $INIT_CWD/src/bin/posse-deploy.sh $INIT_CWD/lib/bin/posse-deploy.sh"
   },
   "bin": {
     "posse-build": "lib/bin/posse-build.cjs",
