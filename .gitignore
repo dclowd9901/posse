@@ -13,3 +13,4 @@ build
 # Yarn
 yarn-error.log
 .pnp.*
+.yarn
