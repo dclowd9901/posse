@@ -1,5 +1,5 @@
 {
-  "name": "posse",
+  "name": "@dclowd9901/posse",
   "version": "0.0.1",
   "description": "Pretty simple static site generation",
   "packageManager": "yarn@3.6.3",
