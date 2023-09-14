@@ -7,6 +7,7 @@ import makeElement from '../../utils/makeElement';
 import writeFileWithDirectory from '../../utils/writeFileWithDirectory';
 import copyStaticAssets from '../../utils/copyStaticAssets';
 import { supportedImageTypes } from '../../constants/supportedFileTypes';
+import formatBaselinePage from 'src/scripts/formatBaselinePage';
 
 interface ImageMetadata {
   image: string;
@@ -57,7 +58,7 @@ function makeGalleryItem(metadata: ImageMetadata) {
 }
 
 export default async function gallery(
-  indexContents: string,
+  indexFileContents: string,
   filePath: string,
   buildFolder: string,
   siteFolder: string
@@ -96,7 +97,12 @@ export default async function gallery(
     return acc;
   }, '');
 
-  const newIndexContents = indexContents.replace(
+  console.log(
+    `Adding header and footer to "${filePath}" and setting host path...`
+  );
+  const formattedPage = formatBaselinePage(indexFileContents);
+
+  const newIndexContents = formattedPage.replace(
     '{galleryContainer}',
     galleryHTML
   );

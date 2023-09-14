@@ -27,8 +27,21 @@ const injectHostPath = (page: string) => {
   return page.replaceAll(HOST_PATH, getHostPath());
 };
 
-const formatBaselinePage = (pageContent: string) => {
-  return injectHostPath(injectFooter(injectHeader(pageContent)));
+const injectPageCSSRelativeLocation = (
+  page: string,
+  relativeLocation: string = '.'
+) => {
+  return page.replace('{cssPath}', relativeLocation);
+};
+
+const formatBaselinePage = (
+  pageContent: string,
+  relativePageCSSPath?: string
+) => {
+  return injectPageCSSRelativeLocation(
+    injectHostPath(injectFooter(injectHeader(pageContent))),
+    relativePageCSSPath
+  );
 };
 
 export default formatBaselinePage;

@@ -5,7 +5,9 @@ import { Converter } from 'showdown';
 import makeElement from '../../utils/makeElement';
 import filePathToFolderPath from '../../utils/filePathToFolderPath';
 import writeFileWithDirectory from '../../utils/writeFileWithDirectory';
-import { getHostPath } from '../../scripts/formatBaselinePage';
+import formatBaselinePage, {
+  getHostPath,
+} from '../../scripts/formatBaselinePage';
 import copyStaticAssets from '../../utils/copyStaticAssets';
 
 const converter = new Converter();
@@ -50,7 +52,7 @@ const getArticlePaths = async (folderPath: string, siteFolder: string) =>
   await glob(path.join(`${folderPath}/**/*.md`), { cwd: siteFolder });
 
 const process = async (
-  indexContents: string,
+  unformattedIndexContents: string,
   filePath: string,
   buildFolder: string,
   siteFolder: string
@@ -66,17 +68,22 @@ const process = async (
   const articleLinks = buildArticles(
     articlePaths,
     folderPath,
-    indexContents,
+    unformattedIndexContents,
     buildFolder,
     siteFolder
   );
-  buildArticleListPage(filePath, articleLinks, indexContents, buildFolder);
+  buildArticleListPage(
+    filePath,
+    articleLinks,
+    unformattedIndexContents,
+    buildFolder
+  );
 };
 
 const buildArticleListPage = (
-  filePath: string,
+  articleListPath: string,
   articleLinks: ArticleLinkDescription[],
-  indexContents: string,
+  indexFileContents: string,
   buildFolder: string
 ) => {
   const articleListElements = articleLinks.map(
@@ -99,9 +106,15 @@ const buildArticleListPage = (
     articleListElements.join('')
   );
 
-  const indexContentsWithLinks = indexContents.replace(listToken, ul);
+  console.log(
+    `Adding header and footer to "${articleListPath}" and setting host path...`
+  );
+  // We go up three levels to get out of the articles folder structure
+  const formattedPage = formatBaselinePage(indexFileContents, '../../..');
+
+  const indexContentsWithLinks = formattedPage.replace(listToken, ul);
   writeFileWithDirectory(
-    path.join(buildFolder, filePath),
+    path.join(buildFolder, articleListPath),
     indexContentsWithLinks
   );
 };
@@ -135,8 +148,15 @@ const buildArticles = (
       );
     }
 
+    console.log(
+      `Adding header and footer to "${articlePath}" and setting host path...`
+    );
+    const formattedPage = formatBaselinePage(indexFileContents);
+
+    console.log(`Converting file at ${articlePath} to HTML...`);
     const markedUpContent = converter.makeHtml(article);
-    const newPageWithMarkedUpContent = indexFileContents.replace(
+
+    const newPageWithMarkedUpContent = formattedPage.replace(
       listToken,
       makeElement('div', { class: 'article' }, markedUpContent)
     );

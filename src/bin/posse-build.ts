@@ -60,7 +60,7 @@ async function run(): Promise<void> {
       case 'articlesList': {
         console.log(`'pageType' found: 'articlesList' type`);
         await articlesList(
-          formattedPage,
+          fileContents,
           indexFilePath,
           BUILD_FOLDER,
           SITE_FOLDER

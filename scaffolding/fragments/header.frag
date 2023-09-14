@@ -2,7 +2,7 @@
 <head>
   <title>My Posse Site</title>
   <link rel="stylesheet" href="{hostPath}/shared/base.css" />
-  <link rel="stylesheet" href="./css/page.css" />
+  <link rel="stylesheet" href="{cssPath}/css/page.css" />
 </head>
 <body>
   <div id="main">
