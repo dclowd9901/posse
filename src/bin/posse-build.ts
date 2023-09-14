@@ -7,7 +7,6 @@ import { glob } from 'glob';
 import gallery from '../pageTypes/treatments/gallery';
 import articlesList from '../pageTypes/treatments/articlesList';
 import noTreatment from '../pageTypes/treatments/noTreatment';
-import formatBaselinePage from '../scripts/formatBaselinePage';
 import getPageType from '../pageTypes/getPageType';
 import { PROJECT_ROOT } from '../scripts/constants';
 import copyStaticAssets from '../utils/copyStaticAssets';
@@ -44,17 +43,12 @@ async function run(): Promise<void> {
       'utf-8'
     );
 
-    console.log(
-      `Adding header and footer to "${indexFilePath}" and setting host path...`
-    );
-    const formattedPage = formatBaselinePage(fileContents);
-
     const pageType = getPageType(fileContents);
 
     switch (pageType) {
       case 'galleryPage': {
         console.log(`'pageType' found: 'galleryPage' type`);
-        await gallery(formattedPage, indexFilePath, BUILD_FOLDER, SITE_FOLDER);
+        await gallery(fileContents, indexFilePath, BUILD_FOLDER, SITE_FOLDER);
         break;
       }
       case 'articlesList': {
@@ -70,7 +64,7 @@ async function run(): Promise<void> {
       case 'noTreatment': {
         console.log(`'pageType' not defined; no treatment applied`);
         await noTreatment(
-          formattedPage,
+          fileContents,
           indexFilePath,
           BUILD_FOLDER,
           SITE_FOLDER

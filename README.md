@@ -70,11 +70,6 @@ This package comes with a couple of `.frag` files defined in the `fragments` fol
 
 When putting together your site, you should be spending most of your time in the `site` folder and the `fragments` folder.
 
-### Page-specific tokens 
-
- - `galleryPage`
-    - `{galleryContainer}` - provides the markup generated from images and their metadata.
-
 ### CSS 
 
 CSS exists at two levels:
@@ -101,5 +96,8 @@ Please see the [Deploying doc](./src/docs/deploy.md).
 
 ### To do:
 
-- [] Add support for images to blogs.
-- [] Create local server instance for testing.
+- [ ] Add support for images to blogs.
+- [ ] Unify logging
+- [ ] Add better dev tooling
+- [ ] Add tests
+

@@ -110,7 +110,7 @@ const buildArticleListPage = (
     `Adding header and footer to "${articleListPath}" and setting host path...`
   );
   // We go up three levels to get out of the articles folder structure
-  const formattedPage = formatBaselinePage(indexFileContents, '../../..');
+  const formattedPage = formatBaselinePage(indexFileContents);
 
   const indexContentsWithLinks = formattedPage.replace(listToken, ul);
   writeFileWithDirectory(
@@ -151,7 +151,7 @@ const buildArticles = (
     console.log(
       `Adding header and footer to "${articlePath}" and setting host path...`
     );
-    const formattedPage = formatBaselinePage(indexFileContents);
+    const formattedPage = formatBaselinePage(indexFileContents, '../../..');
 
     console.log(`Converting file at ${articlePath} to HTML...`);
     const markedUpContent = converter.makeHtml(article);

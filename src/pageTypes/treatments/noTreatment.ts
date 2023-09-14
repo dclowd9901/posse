@@ -3,9 +3,10 @@ import path from 'node:path';
 import filePathToFolderPath from '../../utils/filePathToFolderPath';
 import writeFileWithDirectory from '../../utils/writeFileWithDirectory';
 import copyStaticAssets from '../../utils/copyStaticAssets';
+import formatBaselinePage from 'src/scripts/formatBaselinePage';
 
 export default async function noTreatment(
-  indexContents: string,
+  indexFileContents: string,
   filePath: string,
   buildFolder: string,
   siteFolder: string
@@ -23,7 +24,12 @@ export default async function noTreatment(
 
   console.log(`Copying "${filePath}" to build folder "${buildFolder}"`);
 
-  writeFileWithDirectory(path.join(buildFolder, filePath), indexContents);
+  console.log(
+    `Adding header and footer to "${filePath}" and setting host path...`
+  );
+  const formattedPage = formatBaselinePage(indexFileContents, '../../..');
+
+  writeFileWithDirectory(path.join(buildFolder, filePath), formattedPage);
 
   console.log(`Successfully copied "${filePath}" to "${buildFolder}"`);
 }
