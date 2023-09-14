@@ -41,12 +41,12 @@
     "ts-node": "10.9.1"
   },
   "scripts": {
-    "build": "yarn rollup --config rollup.config.js && cp -f $INIT_CWD/src/bin/posse-deploy.sh $INIT_CWD/lib/bin/posse-deploy.sh"
+    "build": "yarn rollup --config rollup.config.js && cp -f $INIT_CWD/src/bin/posse-deploy.sh $INIT_CWD/lib/bin/posse-deploy.sh && cp -f $INIT_CWD/src/bin/posse-dev.sh $INIT_CWD/lib/bin/posse-dev.sh"
   },
   "bin": {
     "posse-build": "lib/bin/posse-build.cjs",
     "posse-deploy": "lib/bin/posse-deploy.sh",
-    "posse-dev": "lib/bin/posse-dev.cjs",
+    "posse-dev": "lib/bin/posse-dev.sh",
     "posse-init": "lib/bin/posse-init.cjs"
   }
 }
